@@ -1,8 +1,7 @@
 from selenium import webdriver
-import time
+
 
 browser = webdriver.Chrome('/Users/burakkorkmaz/Desktop/4 - 1/cs 461 - ai/project/implementation/chromedriver')
-#browser.fullscreen_window()
 browser.get('https://www.nytimes.com/crosswords/game/mini')
 browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/div[2]/div[2]/article/div[2]/button/div')[0].click()
 browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/div/ul/div[2]/li[2]/button')[0].click()
@@ -19,6 +18,18 @@ clues_down.append(browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]
 print(clues_across)
 print(clues_down)
 
-print(browser.find_elements_by_xpath('//*[@id="xwd-board"]')[0].text)
+solutions = []
 
+#print("Audio bakalım",browser.find_elements_by_tag_name("audio"))
+
+for i in range(25):
+    css_link = '#xwd-board > g:nth-child(5) > g:nth-child('+str(i+1)+')'
+    #print(css_link)
+    if not browser.find_elements_by_css_selector(css_link):
+        solutions.append('')
+    else:
+        solutions.append(browser.find_elements_by_css_selector(css_link)[0].text.split("\n"))
+
+print(solutions)  # Solutions are listed as increasing order from left to right and top to down                                                      
+browser.quit()
 
