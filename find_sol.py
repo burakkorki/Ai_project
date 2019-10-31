@@ -18,8 +18,8 @@ clues_down = []
 clues_across.append(browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/article/section[2]/div[1]/ol')[0].text.split('\n'))
 clues_down.append(browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/article/section[2]/div[2]/ol')[0].text.split('\n'))
 
-print("Across Clues\n"+clues_across)
-print("Down Clues\n"+clues_down)
+print("Across Clues\n",clues_across)
+print("Down Clues\n",clues_down)
 
 solutions = []
 
@@ -32,6 +32,14 @@ for i in range(25):
     else:
         solutions.append(browser.find_elements_by_css_selector(css_link)[0].text.split("\n"))
 
-print("Solutions\n"+solutions)  # Solutions are listed as increasing order from left to right and top to down                                                      
+print("Solutions\n",solutions)  # Solutions are listed as increasing order from left to right and top to down                                                      
+output = open("output.txt",'w')
+output.writelines(str(clues_across))
+output.write('\n')
+output.writelines(str(clues_down))
+output.write('\n')
+output.writelines(str(solutions))
+output.write('\n')
+output.close()
 browser.quit()
 
