@@ -1,8 +1,12 @@
 from selenium import webdriver
 import os
 
+
+def solutions():
+    return solutions
+
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
+#chrome_options.add_argument('--headless')
 browser = webdriver.Chrome(os.path.abspath(os.curdir)+'/chromedriver',options=chrome_options)
 
 browser.get('https://www.nytimes.com/crosswords/game/mini')
@@ -12,14 +16,14 @@ browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/d
 browser.find_elements_by_xpath('//*[@id="root"]/div/div[2]/div[2]/article/div[2]/button[2]/div/span')[0].click()
 browser.find_elements_by_xpath('//*[@id="root"]/div/div[2]/div[2]/span')[0].click()
 
-clues_across = []
-clues_down = []
+clues_across = list()
+clues_down = list()
 
-clues_across.append(browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/article/section[2]/div[1]/ol')[0].text.split('\n'))
-clues_down.append(browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/article/section[2]/div[2]/ol')[0].text.split('\n'))
+clues_across = browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/article/section[2]/div[1]/ol')[0].text.split('\n')
+clues_down = browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/article/section[2]/div[2]/ol')[0].text.split('\n')
 
-print("Across Clues\n",clues_across)
-print("Down Clues\n",clues_down)
+#print("Across Clues\n",clues_across)
+#print("Down Clues\n",clues_down)
 
 solutions = []
 
@@ -32,7 +36,7 @@ for i in range(25):
     else:
         solutions.append(browser.find_elements_by_css_selector(css_link)[0].text.split("\n"))
 
-print("Solutions\n",solutions)  # Solutions are listed as increasing order from left to right and top to down                                                      
+#print("Solutions\n",solutions)  # Solutions are listed as increasing order from left to right and top to down                                                      
 output = open("output.txt",'w')
 output.writelines(str(clues_across))
 output.write('\n')

@@ -1,3 +1,3 @@
-[['1', "Boomerang's path", '4', 'Boon for a soccer player', '6', 'Boo-boo', '8', 'Boo Boo was his sidekick', '9', '"Scary" start to each Across clue']]
-[['1', '122 is the highest known one for a human', '2', 'Golfer McIlroy wth four major championship victories', '3', 'Chocolate substitute', '5', 'Ghost, for Snapchat', '7', '2016 Summer Olympics host']]
-[['1', 'A'], ['2', 'R'], ['3', 'C'], [''], [''], ['4', 'G'], ['O'], ['A'], ['5', 'L'], [''], ['6', 'E'], ['R'], ['R'], ['O'], ['7', 'R'], [''], ['8', 'Y'], ['O'], ['G'], ['I'], [''], [''], ['9', 'B'], ['O'], ['O']]
+['1', 'This Across answer, in order', '6', 'Inbox pileup', '7', 'This Across answer, in order', '8', 'App hiree', '9', 'Abbr. after Brooklyn or Washington, in New York City neighborhood names']
+['1', 'Game played with a dog', '2', 'Words said while fanning oneself', '3', 'Midnight visits to the refrigerator', '4', 'What to call a king', '5', '"For those who want a summary," in internet shorthand']
+[['1', 'F'], ['2', 'I'], ['3', 'R'], ['4', 'S'], ['5', 'T'], ['6', 'E'], ['M'], ['A'], ['I'], ['L'], ['7', 'T'], ['H'], ['I'], ['R'], ['D'], ['8', 'C'], ['O'], ['D'], ['E'], ['R'], ['9', 'H'], ['T'], ['S'], [''], ['']]
