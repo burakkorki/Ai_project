@@ -1,3 +1,3 @@
-['1', 'This Across answer, in order', '6', 'Inbox pileup', '7', 'This Across answer, in order', '8', 'App hiree', '9', 'Abbr. after Brooklyn or Washington, in New York City neighborhood names']
-['1', 'Game played with a dog', '2', 'Words said while fanning oneself', '3', 'Midnight visits to the refrigerator', '4', 'What to call a king', '5', '"For those who want a summary," in internet shorthand']
-[['1', 'F'], ['2', 'I'], ['3', 'R'], ['4', 'S'], ['5', 'T'], ['6', 'E'], ['M'], ['A'], ['I'], ['L'], ['7', 'T'], ['H'], ['I'], ['R'], ['D'], ['8', 'C'], ['O'], ['D'], ['E'], ['R'], ['9', 'H'], ['T'], ['S'], [''], ['']]
+['1', "Santa's little helper", '4', 'Team', '6', 'Approximately 28.35 grams', '7', 'Breakfast that can be "everything"', '8', 'Was in first place']
+['1', 'Sugar substitute in a blue packet', '2', 'Leg movement used in crescent pose', '3', 'Confronted directly', '4', 'Cry loudly', '5', 'Director Guillermo ___ Toro']
+[[''], ['1', 'E'], ['2', 'L'], ['3', 'F'], [''], ['4', 'S'], ['Q'], ['U'], ['A'], ['5', 'D'], ['6', 'O'], ['U'], ['N'], ['C'], ['E'], ['7', 'B'], ['A'], ['G'], ['E'], ['L'], [''], ['8', 'L'], ['E'], ['D'], ['']]

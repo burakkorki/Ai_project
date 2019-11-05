@@ -12,8 +12,6 @@ leftFrame.pack(side = LEFT,padx = 50)
 rightFrame = Frame(mainwindow)
 rightFrame.pack(side = LEFT)
 
-"""bottomFrame = Frame(mainwindow,background_color="black")
-bottomFrame.pack(side = BOTTOM)"""
 
 
 

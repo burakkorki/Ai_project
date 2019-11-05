@@ -6,7 +6,7 @@ def solutions():
     return solutions
 
 chrome_options = webdriver.ChromeOptions()
-#chrome_options.add_argument('--headless')
+chrome_options.add_argument('--headless')
 browser = webdriver.Chrome(os.path.abspath(os.curdir)+'/chromedriver',options=chrome_options)
 
 browser.get('https://www.nytimes.com/crosswords/game/mini')
