@@ -1,9 +1,12 @@
 from selenium import webdriver
 import os
+import numpy as np
 
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
+
+#To hide chrome comment out the following line 
+#chrome_options.add_argument('--headless')
 browser = webdriver.Chrome(os.path.abspath(os.curdir)+'/chromedriver 78',options=chrome_options)
 
 browser.get('https://www.nytimes.com/crosswords/game/mini')
@@ -19,8 +22,8 @@ clues_down = list()
 clues_across = browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/article/section[2]/div[1]/ol')[0].text.split('\n')
 clues_down = browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/article/section[2]/div[2]/ol')[0].text.split('\n')
 
-#print("Across Clues\n",clues_across)
-#print("Down Clues\n",clues_down)
+print("Across Clues\n",clues_across)
+print("Down Clues\n",clues_down)
 
 solutions = []
 
@@ -33,7 +36,31 @@ for i in range(25):
     else:
         solutions.append(browser.find_elements_by_css_selector(css_link)[0].text.split("\n"))
 
-#print("Solutions\n",solutions)  # Solutions are listed as increasing order from left to right and top to down                                                      
+sol = list()
+loc = list()
+counter = 0
+for i in solutions:
+    if i[0].isdigit():
+        sol.append(i[1])
+        loc.append([int(counter/5),counter%5,i[0]])
+    else:
+        sol.append(i[0])
+    counter += 1
+sol = np.array(sol).reshape(5,5)
+print(loc)
+sol_across = []
+print(sol[:,0])
+print(sol[:,1])
+print(sol[:,2])
+print(sol[:,3])
+print(sol[:,4])
+print(sol[0])
+print(sol[1])
+print(sol[2])
+print(sol[3])
+print(sol[4])
+print("Solutions\n",solutions)  # Solutions are listed as increasing order from left to right and top to down                                                      
+
 output = open("output.txt",'w')
 output.writelines(str(clues_across))
 output.write('\n')
@@ -42,5 +69,11 @@ output.write('\n')
 output.writelines(str(solutions))
 output.write('\n')
 output.close()
-browser.quit()
+
+browser.get('https://www.wordplays.com/crossword-clues')
+browser.get('https://www.wordplays.com/crossword-clues')
+browser.find_element_by_xpath("/html/body/div[1]/div[3]/div[3]/div[1]/form/div/table/tbody/tr[3]/td/input").send_keys("LALA")
+browser.find_element_by_xpath("//*[@id=\"search\"]").click()
+print(browser.find_element_by_xpath("//*[@id=\"wordlists\"]").text)
+#browser.quit()
 

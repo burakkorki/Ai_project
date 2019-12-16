@@ -19,7 +19,7 @@ rightFrame.pack(side = LEFT)
 
 for i in range(25):
     
-    print(solutions[i][0])
+    #print(solutions[i][0])
     if solutions[i][0] == '':
         l1 = Label(leftFrame,bd = 1,font="Times 22",height = 5,width =10,background="black",justify=LEFT)
     else: 
