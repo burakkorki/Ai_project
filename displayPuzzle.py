@@ -1,7 +1,7 @@
 from tkinter import *
-from  find_sol import *
+from find_sol import *
 from datetime import date
-
+import textwrap
 
 mainwindow = Tk()
 mainwindow.title("Suzzle Polver")
@@ -35,15 +35,13 @@ for i in range(25):
     l1.grid(row=1+int(i/5),column=1+int(i%5))
 
 clues_accross_txt = 'Accross \n'
-for i in range(len(clues_across)-1):
-    if not clues_across[i][0].isalpha():
-        clues_accross_txt += clues_across[i] + " - " +clues_across[i+1] + "\n"
+for i in range(0, len(clues_across), 2):
+    clues_accross_txt += clues_across[i] + " - " + textwrap.fill(clues_across[i+1],50) + "\n"
     
 
 clues_down_txt = 'Down \n'
-for i in range(len(clues_down)-1):
-    if not clues_down[i][0].isalpha():
-        clues_down_txt += clues_down[i] + " - " +clues_down[i+1] + "\n"
+for i in range(0, len(clues_down), 2):
+    clues_down_txt += clues_down[i] + " - " + textwrap.fill(clues_down[i+1],50) + "\n"
     
 
 lab_across = Label(rightFrame,text=clues_accross_txt,justify=LEFT,font ="Times 16")

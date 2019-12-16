@@ -2,15 +2,12 @@ from selenium import webdriver
 import os
 
 
-def solutions():
-    return solutions
-
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
-browser = webdriver.Chrome(os.path.abspath(os.curdir)+'/chromedriver',options=chrome_options)
+browser = webdriver.Chrome(os.path.abspath(os.curdir)+'/chromedriver 78',options=chrome_options)
 
 browser.get('https://www.nytimes.com/crosswords/game/mini')
-browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/div[2]/div[2]/article/div[2]/button/div')[0].click()
+browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/div[2]/div[3]/div/article/div[2]/button/div/span')[0].click()
 browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/div/ul/div[2]/li[2]/button')[0].click()
 browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/div/ul/div[2]/li[2]/ul/li[3]/a')[0].click()
 browser.find_elements_by_xpath('//*[@id="root"]/div/div[2]/div[2]/article/div[2]/button[2]/div/span')[0].click()
