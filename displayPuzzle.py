@@ -36,12 +36,12 @@ for i in range(25):
 
 clues_accross_txt = 'Accross \n'
 for i in range(0, len(clues_across), 2):
-    clues_accross_txt += clues_across[i] + " - " + textwrap.fill(clues_across[i+1],50) + "\n"
+    clues_accross_txt += clues_across[i] + " - " + textwrap.fill(clues_across[i+1],50) + "\n\n"
     
 
 clues_down_txt = 'Down \n'
 for i in range(0, len(clues_down), 2):
-    clues_down_txt += clues_down[i] + " - " + textwrap.fill(clues_down[i+1],50) + "\n"
+    clues_down_txt += clues_down[i] + " - " + textwrap.fill(clues_down[i+1],50) + "\n\n"
     
 
 lab_across = Label(rightFrame,text=clues_accross_txt,justify=LEFT,font ="Times 16")
