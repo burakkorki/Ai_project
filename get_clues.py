@@ -15,10 +15,10 @@ def clear(sentence, word):
 
 
 
-def word_hippo(word):
+def word_hippo(browser,word):
 
-    chrome_options = webdriver.ChromeOptions()
-    browser = webdriver.Chrome(os.path.abspath(os.curdir)+'/chromedriver 78',options=chrome_options)
+    #chrome_options = webdriver.ChromeOptions()
+    #browser = webdriver.Chrome(os.path.abspath(os.curdir)+'/chromedriver 78',options=chrome_options)
 
     new_clues = list()
 
@@ -35,7 +35,6 @@ def word_hippo(word):
 
 
 def wiki(word):
-
     try:
         results_of_search = wikipedia.search(word)
     
@@ -150,10 +149,15 @@ def merriam_webster(browser,word):
         """if new_clues[i][0]=="—" and i!=0:
             new_clues.remove(new_clues[i])
         el"""
-        if new_clues[i][0].isdigit()==True :
-            new_clues.remove(new_clues[i])
-        elif len(new_clues[i])==1 :
-            new_clues.remove(new_clues[i])
+
+        for k in new_clues[i]:
+            if k.isdigit()==True :
+                new_clues.remove(new_clues[i])
+                break
+        
+            elif new_clues[i].count(" ")<5 :
+                new_clues.remove(new_clues[i])
+                break
 
     for i in range(len(new_clues)):
         if new_clues[i][0]==":" or new_clues[i][0]=="—":
@@ -166,13 +170,13 @@ def merriam_webster(browser,word):
     
     
     #print(new_clues)
-    return textwrap.fill('. '.join(map(str, new_clues)),50)
+    return new_clues[0] + "." #textwrap.fill('. '.join(map(str, new_clues)),50)
 
 
 # Test cases
 
 #print(word_hippo("hou"))
-#print(wiki("justin"))
+#print(wiki("tfa"))
 #print(anagramSmith("ubers"))
 #wordnetFunction("dog")
 
