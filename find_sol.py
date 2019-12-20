@@ -2,6 +2,7 @@ from selenium import webdriver
 import os
 import numpy as np
 from get_clues import *
+from operator import itemgetter
 
 chrome_options = webdriver.ChromeOptions()
 
@@ -22,7 +23,9 @@ clues_down = list()
 clues_across = browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/article/section[2]/div[1]/ol')[0].text.split('\n')
 clues_down = browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/article/section[2]/div[2]/ol')[0].text.split('\n')
 
+print("Getting Original Clues from: nytimes.com")
 print("Across Clues\n",clues_across)
+print()
 print("Down Clues\n",clues_down)
 
 solutions = []
@@ -58,6 +61,8 @@ for i in range(5):
             accross_solution.append(loc[i][j])
             accross_solution.append(''.join(map(str,sol[i])))
             break
+
+print("Getting Solutions from: nytimes.com")
 print("Accross solutions:\n",accross_solution)
 
 down_solution = list()
@@ -67,10 +72,20 @@ for i in range(5):
             down_solution.append(loc[j][i])
             down_solution.append(''.join(map(str,sol[:,i])))
             break
+
+temp = list()
+for i in range(0,len(down_solution),2):
+    temp.append((int(down_solution[i]),down_solution[i+1]))
+
+
+temp = sorted(temp,reverse = False)
+
+for i in range(0,len(down_solution),2):
+    down_solution[i],down_solution[i+1] = str(temp[int(i/2)][0]),temp[int(i/2)][1]
+
 print("Down solutions:\n",down_solution)
 
 
-                                              
 
 output = open("output.txt",'w')
 output.writelines(str(clues_across))
@@ -84,44 +99,66 @@ output.close()
 new_clues_accross = list()
 new_clues_down = list()
 
-"""#Finding new clues for accross solutions
-browser.get('https://www.wordplays.com/crossword-clues')
 for i in range(0,len(accross_solution),2):
-    browser.get('https://www.wordplays.com/crossword-clues')
-    browser.find_element_by_xpath("/html/body/div[1]/div[3]/div[3]/div[1]/form/div/table/tbody/tr[3]/td/input").send_keys(accross_solution[i+1])
-    browser.find_element_by_xpath("//*[@id=\"search\"]").click()
-    print("Clues getting for: ",accross_solution[i+1])
-    new_clues_accross.append(accross_solution[i])
-    new_clues_accross.append(browser.find_element_by_xpath("//*[@id=\"wordlists\"]").text.splitlines()[2:])
-    print(len(new_clues_accross[i+1])," new clues are found")
-
-
-#Finding new clues for down solutions
-
-for i in range(0,len(down_solution),2):
-    browser.get('https://www.wordplays.com/crossword-clues')
-    browser.find_element_by_xpath("/html/body/div[1]/div[3]/div[3]/div[1]/form/div/table/tbody/tr[3]/td/input").send_keys(down_solution[i+1])
-    browser.find_element_by_xpath("//*[@id=\"search\"]").click()
-    print("Clues getting for: ",down_solution[i+1])
-    new_clues_down.append(down_solution[i])
-    new_clues_down.append(browser.find_element_by_xpath("//*[@id=\"wordlists\"]").text.splitlines()[2:])
-    print(len(new_clues_down[i+1])," new clues are found")"""
-
-for i in range(0,len(accross_solution),2):
+    print()
+    print("Step1 - From Meriam Webster Finding clue for ", accross_solution[i+1])
     new_clues_accross.append(accross_solution[i])
     clue = merriam_webster(browser,accross_solution[i+1])
     if clue!=False:
         new_clues_accross.append(clue)
+    else:
+        print()
+        print("Step2 - From Wikipedia Finding clue for ", accross_solution[i+1])
+        clue = wiki(accross_solution[i+1])
+        if clue != False:
+            new_clues_accross.append(clue)
+        else:
+            print()
+            print("Step3 - From Word Hippo Finding clue for ", accross_solution[i+1], "By creating sentences with answer")
+            clue = word_hippo(browser,accross_solution[i+1])
+            if clue != False:
+                new_clues_accross.append(clue)
+            else:
+                print()
+                print("Step4 - From Anagram Smith Finding clue for ", accross_solution[i+1])
+                clue = anagramSmith(browser,accross_solution[i+1])
+                if clue != False:
+                    new_clues_accross.append(clue)
+                else:
+                    new_clues_accross.append(" ") #Wordnet
 
-print("New clues accross:\n",new_clues_accross)
+
+    print("New clue is: ",clue)
 
 for i in range(0,len(down_solution),2):
+    print()
+    print("Step1 - From Meriam Webster Finding clue for ", down_solution[i+1])
     new_clues_down.append(down_solution[i])
     clue = merriam_webster(browser,down_solution[i+1])
     if clue!=False:
         new_clues_down.append(clue)
+    else:
+        print()
+        print("Step2 - From Wikipedia Finding clue for ", down_solution[i+1])
+        clue = wiki(down_solution[i+1])
+        if clue != False:
+            new_clues_down.append(clue)
+        else:
+            print()
+            print("Step3 - From Word Hippo Finding clue for ", down_solution[i+1], "By creating sentences with answer")
+            clue = word_hippo(browser,down_solution[i+1])
+            if clue != False:
+                new_clues_down.append(clue)
+            else:
+                print()
+                print("Step4 - From Anagram Smith Finding clue for ", down_solution[i+1])
+                clue = anagramSmith(browser,down_solution[i+1])
+                if clue != False:
+                    new_clues_down.append(clue)
+                else:
+                    new_clues_down.append(" ") #Wordnet
 
-print("New clues down:\n",new_clues_down)
+    print("New clue is: ",clue)
 
 browser.quit()
 
