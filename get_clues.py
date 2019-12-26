@@ -7,11 +7,21 @@ import wikipedia
 import time
 import nltk as ntlk
 from nltk.corpus import wordnet
+import re
 
 def clear(sentence, word):
-    if word in sentence:  # see if one of the words in the sentence is the word we want
-        replaced = sentence.replace(word, "____")
-        #print(replaced)
+    newsentence = ""
+    for i in sentence.split(" "):
+        if word.lower() == i.lower() or (i[:-1].lower() == word.lower() and (i[-1] == "." or i[-1] == ",")):  # see if one of the words in the sentence is the word we want
+            i = i.lower().replace(word.lower(), "____")
+            #print(replaced)
+        newsentence += i + " "
+    #print(newsentence)
+    if newsentence.find("(") != -1 and newsentence.find(")") != -1: 
+        newsentence = newsentence[0:newsentence.find("(")] + newsentence[newsentence.find(")")+2:]
+    if newsentence.find("\n") != -1:
+        newsentence = newsentence[:newsentence.find("\n")+1]
+    return newsentence.capitalize()
 
 
 
@@ -28,9 +38,11 @@ def word_hippo(browser,word):
     except:
         print("No solution in word hippo")
         return False
-
-    clear(sentence[0], word)
-    return sentence
+    for i in range(len(sentence)):
+        sentence[i] = clear(sentence[i], word)
+        if len(sentence[i]) < 140:
+            return sentence[i]
+    return sentence[0]
 
 
 
@@ -50,7 +62,7 @@ def wiki(word):
 
     first_result = first_result.lower()
     word = word.lower()
-    first_result = first_result.replace(word, "____")
+    first_result = clear(first_result,word)
     return first_result
 
 
@@ -89,10 +101,14 @@ def anagramSmith(browser,word):
 
     try:
         browser.get('https://new.wordsmith.org/anagram/anagram.cgi?anagram=' + word)
+        #To disable popup
+        try:
+            browser.find_element_by_xpath("//*[@id=\"t402-prompt\"]/div[2]/div[3]/a[2]").click()
+        except:
+            print("No pop up")
         #browser.find_element_by_xpath("/html/body/topbar/blockquote/form/table/tbody/tr[1]/td[1]/input").send_keys(word)
         #browser.find_element_by_xpath("/html/body/topbar/blockquote/div/div").click()
         clues = browser.find_element_by_xpath("/html/body/topbar/blockquote/div").text.splitlines()
-
     except:
         print("No solution in anagram smith")
         return False
@@ -101,7 +117,7 @@ def anagramSmith(browser,word):
     index = findIndex("Displaying", clues)
 
     #prints out the first element after displaying label on page
-    return "Anagram of " +  word + " is " + clues[index+1].lower()
+    return "Anagram of " +  word + " is " + clues[index+2].lower()
 
 
 def wordnetFunction(clue):
@@ -115,11 +131,6 @@ def wordnetFunction(clue):
 
 
 def merriam_webster(browser,word):
-    """#Setting browser
-    chrome_options = webdriver.ChromeOptions()
-    #To hide chrome comment out the following line 
-    #chrome_options.add_argument('--headless')
-    browser = webdriver.Chrome(os.path.abspath(os.curdir)+'/chromedriver 78',options=chrome_options)"""
 
     new_clues = list()
 
@@ -127,17 +138,16 @@ def merriam_webster(browser,word):
         browser.get('https://www.merriam-webster.com/')
         browser.find_elements_by_xpath('//*[@id=\"s-term\"]')[0].send_keys(word)
         browser.find_element_by_xpath("//*[@id=\"mw-search-frm\"]/div[1]/div[2]").click()
-        new_clues = list(browser.find_element_by_xpath("//*[@id=\"dictionary-entry-1\"]").text.splitlines()[1:])
+        new_clues = list(browser.find_element_by_xpath("//*[@id=\"dictionary-entry-1\"]/div[2]").text.splitlines()[1:])
+        new_clues.append(browser.find_element_by_xpath("//*[@id=\"dictionary-entry-1\"]/div[2]/div/span/div/span/span").text)
         try:
-            indexof2 = new_clues.index("2")
-            new_clues = new_clues[:indexof2]           
+            new_clues.append(browser.find_element_by_xpath("//*[@id=\"dictionary-entry-1\"]/div[2]/div").text)
         except:
-            a = 0
-            #print("No 2")
-        """try:
-            new_clues += browser.find_element_by_xpath("//*[@id=\"etymology-anchor\"]").text.splitlines()[1:]
+            pass
+        try:
+            new_clues.append(browser.find_element_by_xpath("//*[@id=\"dictionary-entry-1\"]/div[2]/div/span/div/span/span/span/span[2]").text)
         except:
-            print("No history and etymology info")"""
+            pass
     except:
         print("No solution in marrian webster")
         return False
@@ -151,36 +161,50 @@ def merriam_webster(browser,word):
         el"""
 
         for k in new_clues[i]:
-            if k.isdigit()==True :
-                new_clues.remove(new_clues[i])
-                break
+            
         
-            elif new_clues[i].count(" ")<5 :
+            if new_clues[i].count(" ")<3 :
                 new_clues.remove(new_clues[i])
                 break
 
+    
     for i in range(len(new_clues)):
-        if new_clues[i][0]==":" or new_clues[i][0]=="—":
-            new_clues[i] = new_clues[i][1:]
+        if new_clues[i].find(":") != -1:
+            new_clues[i] = new_clues[i][new_clues[i].find(":")+2:]
+        
+        if new_clues[i].find("sense") != -1:
+            new_clues[i] = new_clues[i][:new_clues[i].find("sense")]
+
         new_clues[i] = new_clues[i].replace(":",". ")
     
+    
     for i in range(len(new_clues)):
-        new_clues[i] = new_clues[i].lower().replace(word.lower(),"_"*len(word))
+        new_clues[i] = clear(new_clues[i],word)
         
-    
-    
-    #print(new_clues)
-    return new_clues[0] + "." #textwrap.fill('. '.join(map(str, new_clues)),50)
+  
+    if len(new_clues) == 0:
+        return False
 
+    print(new_clues)
+    for i in range(len(new_clues)):
+        if len(new_clues[i]) < 120 and new_clues[i][0].isalpha()==True and new_clues[i].count(".") == 0 and word not in new_clues[i] and "_" not in new_clues[i]:
+            new_clues[i] = new_clues[i][:-1] + "."
+            return new_clues[i].capitalize()  #textwrap.fill('. '.join(map(str, new_clues)),50)
 
+    return False
 # Test cases
-
-#print(word_hippo("hou"))
-#print(wiki("tfa"))
-#print(anagramSmith("ubers"))
+"""
+chrome_options = webdriver.ChromeOptions()
+#To hide chrome comment out the following line 
+#chrome_options.add_argument('--headless')
+browser = webdriver.Chrome(os.path.abspath(os.curdir)+'/chromedriver 78',options=chrome_options)
+print(merriam_webster(browser,"vegan"))
+#print(word_hippo(browser,"OBAMA"))
+#print(wiki("nudes"))
+#print(anagramSmith(browser,"nudes"))
 #wordnetFunction("dog")
-
-
+browser.quit()
+"""
 
 
 """#Finding new clues for accross solutions

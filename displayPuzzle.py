@@ -33,41 +33,52 @@ for i in range(25):
     l1.grid(row=1+int(i/5),column=1+int(i%5))
 
 
-clues_accross_txt = 'OLD CLUES\nAccross \n'
+clues_accross_txt = ""
 for i in range(0, len(clues_across), 2):
     clues_accross_txt += clues_across[i] + " - " + textwrap.fill(clues_across[i+1],60) + "\n\n"
     
 
-clues_down_txt = '\nDown \n'
+clues_down_txt = ""
 for i in range(0, len(clues_down), 2):
     clues_down_txt += clues_down[i] + " - " + textwrap.fill(clues_down[i+1],60) + "\n\n"
 
-new_clues_accross_txt = 'NEW CLUES\nAccross \n'
+new_clues_accross_txt = ""
 for i in range(0, len(new_clues_accross), 2):
-    new_clues_accross_txt += new_clues_accross[i] + " - " + textwrap.fill(new_clues_accross[i+1].capitalize(),60) + "\n\n"
+    new_clues_accross_txt += new_clues_accross[i] + " - " + textwrap.fill(new_clues_accross[i+1],60) + "\n\n"
     
 
-new_clues_down_txt = '\n\n\n\n\n\n\n\nDown \n'
+new_clues_down_txt = ""
 for i in range(0, len(clues_down), 2):
-    new_clues_down_txt += new_clues_down[i] + " - " + textwrap.fill(new_clues_down[i+1].capitalize(),60) + "\n\n"
+    new_clues_down_txt += new_clues_down[i] + " - " + textwrap.fill(new_clues_down[i+1],60) + "\n\n"
     
+lab_across = Label(rightFrame,text="Accross",justify=LEFT,font ="Times 30 bold",anchor=N)
+lab_across.grid(row = 0, column = 1,sticky=NW)  
 
-lab_across = Label(rightFrame,text=clues_accross_txt,justify=LEFT,font ="Times 16",anchor=W)
-lab_across.grid(row = 1, column = 1,sticky=W)  
+lab_across = Label(rightFrame,text=clues_accross_txt,justify=LEFT,font ="Times 16",anchor=N)
+lab_across.grid(row = 1, column = 1,sticky=NW)  
 
-lab_down = Label(rightFrame,text=clues_down_txt,justify=LEFT,font="Times 16",anchor=W)
-lab_down.grid(row = 1, column = 2)
+lab_down = Label(rightFrame,text="Down",justify=LEFT,font="Times 30 bold",anchor=N)
+lab_down.grid(row = 0, column = 2,sticky=NW)
 
-new_lab_across = Label(rightFrame,text=new_clues_accross_txt,justify=LEFT,font ="Times 16",anchor=W)
-new_lab_across.grid(row = 2, column = 1)  
+lab_down = Label(rightFrame,text=clues_down_txt,justify=LEFT,font="Times 16",anchor=N)
+lab_down.grid(row = 1, column = 2,sticky=NW)
 
-new_lab_down = Label(rightFrame,text=new_clues_down_txt,justify=LEFT,font="Times 16",anchor=W)
-new_lab_down.grid(row = 2, column = 2)
+new_lab_across = Label(rightFrame,text="New Accross",justify=LEFT,font ="Times 30 bold",anchor=N)
+new_lab_across.grid(row = 2, column = 1,sticky=NW) 
 
-today = date.today()
-today = today.strftime("%d %B, %Y")
+new_lab_down = Label(rightFrame,text=new_clues_accross_txt,justify=LEFT,font="Times 16",anchor=N)
+new_lab_down.grid(row = 3, column = 1,sticky=NW)
+
+new_lab_across = Label(rightFrame,text="New Down",justify=LEFT,font ="Times 30 bold",anchor=N)
+new_lab_across.grid(row = 2, column = 2,sticky=NW)  
+
+new_lab_down = Label(rightFrame,text=new_clues_down_txt,justify=LEFT,font="Times 16",anchor=N)
+new_lab_down.grid(row = 3, column = 2,sticky=NW)
+
+#today = date.today()
+#today = today.strftime("%d %B, %Y")
 today += " Suzzle Polver"
-dayLabel = Label(mainwindow,text = today, bd = 1,font="Times 25",height = 2,width =40,background="white")
-dayLabel.place(x=300,y=850,in_=mainwindow)
+dayLabel = Label(mainwindow,text = today, bd = 1,font="Times 22",height = 2,width =40,background="white")
+dayLabel.place(x=150,y=750,in_=mainwindow)
 mainwindow.mainloop()
 

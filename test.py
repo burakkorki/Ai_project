@@ -1,5 +1,4 @@
+a = "MOOSE sense 1 *used for one of the Old World"
+a = a + "." 
 
-
-a = ["12Alp","Alp","12Alp"]
-
-
+print(a.find("sense"))
