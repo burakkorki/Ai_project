@@ -1,0 +1,3 @@
+['1', 'Question pronounced like its last letter', '4', 'Word pronounced like its first letter', '6', 'App customers', '7', 'Prefix with China', '8', '___ Malik, former member of One Direction']
+['1', 'Like neglected garden beds', '2', 'One of the Great Lakes', '3', '"Indeed!"', '4', 'Sporcle offering', '5', 'Institution in Annapolis, Md.: Abbr.']
+[[''], [''], ['1', 'W'], ['2', 'H'], ['3', 'Y'], ['4', 'Q'], ['5', 'U'], ['E'], ['U'], ['E'], ['6', 'U'], ['S'], ['E'], ['R'], ['S'], ['7', 'I'], ['N'], ['D'], ['O'], [''], ['8', 'Z'], ['A'], ['Y'], ['N'], ['']]
