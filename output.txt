@@ -1,3 +1,3 @@
-['1', 'Question pronounced like its last letter', '4', 'Word pronounced like its first letter', '6', 'App customers', '7', 'Prefix with China', '8', '___ Malik, former member of One Direction']
-['1', 'Like neglected garden beds', '2', 'One of the Great Lakes', '3', '"Indeed!"', '4', 'Sporcle offering', '5', 'Institution in Annapolis, Md.: Abbr.']
-[[''], [''], ['1', 'W'], ['2', 'H'], ['3', 'Y'], ['4', 'Q'], ['5', 'U'], ['E'], ['U'], ['E'], ['6', 'U'], ['S'], ['E'], ['R'], ['S'], ['7', 'I'], ['N'], ['D'], ['O'], [''], ['8', 'Z'], ['A'], ['Y'], ['N'], ['']]
+['1', 'This Across answer, in order', '6', 'Inbox pileup', '7', 'This Across answer, in order', '8', 'App hiree', '9', 'Abbr. after Brooklyn or Washington, in New York City neighborhood names']
+['1', 'Game played with a dog', '2', 'Words said while fanning oneself', '3', 'Midnight visits to the refrigerator', '4', 'What to call a king', '5', '"For those who want a summary," in internet shorthand']
+[['1', 'F'], ['2', 'I'], ['3', 'R'], ['4', 'S'], ['5', 'T'], ['6', 'E'], ['M'], ['A'], ['I'], ['L'], ['7', 'T'], ['H'], ['I'], ['R'], ['D'], ['8', 'C'], ['O'], ['D'], ['E'], ['R'], ['9', 'H'], ['T'], ['S'], [''], ['']]

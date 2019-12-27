@@ -158,7 +158,7 @@ def merriam_webster(browser,word):
     for i in range(len(new_clues)-1,-1,-1):
         """if new_clues[i][0]=="—" and i!=0:
             new_clues.remove(new_clues[i])
-        el"""
+        else"""
 
         for k in new_clues[i]:
             
@@ -185,7 +185,6 @@ def merriam_webster(browser,word):
     if len(new_clues) == 0:
         return False
 
-    print(new_clues)
     for i in range(len(new_clues)):
         if len(new_clues[i]) < 120 and new_clues[i][0].isalpha()==True and new_clues[i].count(".") == 0 and word not in new_clues[i] and "_" not in new_clues[i]:
             new_clues[i] = new_clues[i][:-1] + "."

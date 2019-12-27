@@ -19,7 +19,7 @@ browser.find_element_by_xpath("//*[@id=\"username\"]").send_keys(username)
 browser.find_element_by_xpath("//*[@id=\"password\"]").send_keys(password)
 browser.find_element_by_xpath("//*[@id=\"myAccountAuth\"]/div[1]/div/form/div/div[5]/button").click()
 time.sleep(30)
-browser.get('https://www.nytimes.com/crosswords/game/mini/2019/12/12')
+browser.get('https://www.nytimes.com/crosswords/game/mini/2019/11/04')
 
 try:
     browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/div[2]/div[3]/div/article/div[2]/button/div/span')[0].click()
