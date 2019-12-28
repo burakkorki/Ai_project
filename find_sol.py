@@ -10,8 +10,8 @@ chrome_options = webdriver.ChromeOptions()
 #chrome_options.add_argument('--headless')
 browser = webdriver.Chrome(os.path.abspath(os.curdir)+'/chrome_driver/chromedriver 78',options=chrome_options)
 
-username = ""
-password = ""
+username = "burakkorkmaz.bilkent@gmail.com"
+password = "suzzlepolver"
 #Log in
 browser.get('https://www.nytimes.com/crosswords/game/mini')
 browser.find_element_by_xpath("//*[@id=\"root\"]/div/div/div[1]/header/div[3]/div/a[5]").click()
@@ -19,7 +19,7 @@ browser.find_element_by_xpath("//*[@id=\"username\"]").send_keys(username)
 browser.find_element_by_xpath("//*[@id=\"password\"]").send_keys(password)
 browser.find_element_by_xpath("//*[@id=\"myAccountAuth\"]/div[1]/div/form/div/div[5]/button").click()
 time.sleep(30)
-browser.get('https://www.nytimes.com/crosswords/game/mini/2019/11/04')
+browser.get('https://www.nytimes.com/crosswords/game/mini')
 
 try:
     browser.find_elements_by_xpath('//*[@id="root"]/div/div/div[4]/div/main/div[2]/div/div[2]/div[3]/div/article/div[2]/button/div/span')[0].click()
