@@ -1,4 +1,4 @@
-# Requirements
+﻿# Requirements
 
 ## Selenium
 
@@ -80,3 +80,8 @@ Generated clues may be full sentences, abbreviations, incomplete sentences, syno
 # 4. Conclusion
 
 The power of artificial intelligence should not be underestimated as if they are designed and implemented in a proper way. AI’s can accomplish many tasks in a very short period of time compared to humans. In order to be sure about the accuracy of any AI, designers should create a program such that it attaches importance to 2 factors: methods and resources. There are many available methods to solve a problem, in our project we’ve focused on generate and test or goal tree . However, there will always be a dead-end for certain situations. A designer should be aware of this by implementing backup methods so to increase the accuracy of a program. Moreover, benefiting from a few numbers of resources can be restrictive. Searching many more sources and comparing results will assure designers about the legitimacy of the program. This project was very informative about AI so that, as Suzzle Polver, we comprehended what we can achieve with AI technology. However, this is just the tip of the iceberg.
+
+
+
+
+TEST COMMIT
